@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title><style>
+        body{
+            background-image: url(./img/vvvv.jpg);
+            background-repeat: no-repeat;
+            /* background-position: cover; */
+            background-size:cover;
+        }
+.calculator {
+    width: 300px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#display {
+   
+    border: none; 
+    background: hsl(207, 19%, 61%);
+    border-radius: 20px 20px 0 0;
+  font-size: 4.2rem;
+  padding-block-start: 1rem;
+  padding-block-end: 0.5rem;
+  padding-inline-end: 1.25rem;
+  text-align: end;
+  flex-wrap: wrap;
+}
+
+.buttons {
+    border-radius:0 0 20px 20px ;
+  
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    padding: 0.5rem;
+    background: hsl(207, 19%, 61%);
+    text-align: center;
+
+}
+.plus{
+    margin-top: 5px;
+   
+}
+#enter,
+.oprt:hover,
+button:hover {
+    background-color: #e0e0e0;
+    
+}
+#enter:hover{
+    background-color: #e0e0e0;
+
+}
+   
+.btnkey{
+    background: hsl(210, 25%, 95%);
+    /* background-color: #f0f0f0; */
+    text-align: center;
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 40px;
+    height: 60px;
+    width: 60px;
+    border: none;
+    margin: 0.25rem;
+}
+.btnkey:focus,
+.btnkey:active{
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3) inset;
+  outline: none;
+}
+.oprt{
+    background-color: #ee9406;
+}
+#enter{
+    grid-column: 4 / 5 ;
+     /* color: white; */
+      grid-row: 4 / span 3;
+       height: auto;
+        background-color: #ee9406;
+}
+    </style>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <button class="btnkey oprt" onclick="appendValue('-')">-</button>
+            <button class="btnkey oprt" onclick="appendValue('/')"><span>/</span></button>
+            <button class="btnkey oprt" onclick="appendValue('*')">x</button>
+            <button class="btnkey oprt" onclick="clearDisplay()">C</button>
+            <button class="btnkey" onclick="appendValue('7')">7</button>
+            <button class="btnkey" onclick="appendValue('8')">8</button>
+            <button class="btnkey" onclick="appendValue('9')">9</button>
+            <button class="btnkey oprt" onclick="back()">⬅️</button>
+            <button class="btnkey" onclick="appendValue('4')">4</button>
+            <button class="btnkey" onclick="appendValue('5')">5</button>
+            <button class="btnkey" onclick="appendValue('6')">6</button>
+            <button class="btnkey oprt" onclick="appendValue('+')">+</button>
+            <button class="btnkey" onclick="appendValue('1')">1</button>
+            <button class="btnkey" onclick="appendValue('2')">2</button>
+            <button class="btnkey" onclick="appendValue('3')">3</button>
+            <button class="btnkey" onclick="appendValue('0')">0</button>
+            <button class="btnkey" onclick="appendValue('00')">00</button>
+            <button class="btnkey" onclick="appendValue('.')">.</button>
+            <button class="btnkey oprt" id="enter" onclick="calculate('=')">=</button> </button>
+            <!-- </div>
+                <div> -->
+                </div>
+                
+            </div>
+            <script>
+        
+        function appendValue(value) {
+               document.getElementById('display').value += value;
+            }
+            
+            function clearDisplay() {
+                document.getElementById('display').value = '';
+            }
+            
+            function calculate() {
+                
+                try {
+                    let result = eval(document.getElementById('display').value); 
+                    document.getElementById('display').value = result;
+                    console.log(result);
+                    var cac = localStorage.setItem('value',result)
+                   
+                    result = localStorage.getItem('result')
+                } catch (error) {
+                    document.getElementById('display').value = 'Error';
+                }
+              
+            }
+
+            function back() {
+            let x = document.querySelector("input").value;
+            let y = x.slice(0, -1);
+            document.querySelector("input").value = y;
+            }
+
+
+    </script>
+</body>
+</html>
